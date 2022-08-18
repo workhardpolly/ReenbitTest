@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import contactsFile from '../db/db.json';
+import React, { useState } from 'react';
 
 import './contacts.css';
 
@@ -10,7 +9,14 @@ const Contacts = ({ chatIdImport }) => {
     setSearchValue(event.target.value);
   };
 
-  const sortedContactsFile = contactsFile.sort(
+  let currentDb = [];
+
+  for (let i = 1; i < localStorage.length + 1; i++) {
+    currentDb.push(JSON.parse(localStorage.getItem(i)));
+  }
+  console.log(currentDb, 'db updated');
+
+  const sortedContactsFile = currentDb.sort(
     (a, b) =>
       new Date(b.messages.at(-1).messageDate) -
       new Date(a.messages.at(-1).messageDate)

@@ -1,30 +1,34 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import Contacts from './components/contacts/Contacts';
 import Chat from './components/chat/Chat';
+
 import db from './components/db/db.json';
+import reducer from './reducer';
 
 import './App.css';
 
-function App() {
-  useEffect(() => {
-    db.map((item) => {
-      window.localStorage.setItem(item.id, JSON.stringify(item));
-    });
-    console.log('setted DB');
-  }, [0]);
+export const ChatId = React.createContext();
 
+function App() {
   const [chatId, setChatId] = React.useState(1);
+  const [send, setSend] = React.useState(false);
 
   const chatIdImport = (chatIdData) => {
     setChatId(chatIdData);
   };
 
-  console.log(chatId);
-
   return (
     <div className="wrapper">
-      <Contacts chatIdImport={chatIdImport} className="contacts" />
-      <Chat chatIdProp={chatId} className="chat" chatId={''} />
+      <ChatId.Provider value={chatId}>
+        <Contacts chatIdImport={chatIdImport} className="contacts" />
+        <Chat
+          chatIdProp={chatId}
+          className="chat"
+          chatId={''}
+          send={send}
+          setSend={setSend}
+        />
+      </ChatId.Provider>
     </div>
   );
 }

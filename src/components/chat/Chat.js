@@ -1,11 +1,17 @@
-import React, { useEffect, useState } from 'react';
-
+import React, { useEffect, useState, useContext, useReducer } from 'react';
+import reducer from '../../reducer';
+import { ChatId } from '../../App';
 import contacts from '../db/db.json';
 
 import './chat.css';
 
-const Chat = (props) => {
-  let chatId = props.chatIdProp;
+function Chat({ sendMessageImport, send, setSend }) {
+  const chatId = useContext(ChatId);
+
+  const [state, dispatch] = useReducer(
+    reducer,
+    JSON.parse(localStorage.getItem(chatId))
+  );
 
   // current obj storage
 
@@ -22,22 +28,27 @@ const Chat = (props) => {
   };
 
   // sendButton click
-  const [send, setSend] = useState(false);
 
-  const handleClick = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
     setSend(true);
     const localModifiedObj = JSON.parse(JSON.stringify(currentObj));
     localModifiedObj.messages.push({
       messageDate: new Date().toISOString(),
       message: inputValue,
     });
-    setModifiedObj(localModifiedObj);
-    console.log(modifiedObj);
+    dispatch({
+      type: 'sendMessage',
+      payload: { ...localModifiedObj },
+    });
+
+    setInputValue('');
   };
 
   useEffect(() => {
     if (send === true) {
-      window.localStorage.setItem(chatId, JSON.stringify(modifiedObj));
+      window.localStorage.setItem(chatId, JSON.stringify(state));
     }
     setSend(false);
   }, [send]);
@@ -59,7 +70,7 @@ const Chat = (props) => {
         ChatWindow
         <div>Current chat id = {chatId}</div>
       </div>
-      <div className="chatSendMessage">
+      <form className="chatSendMessage" onSubmit={handleSubmit}>
         <input
           placeholder="Type your message here"
           className="chatMessageInput"
@@ -67,10 +78,10 @@ const Chat = (props) => {
           onChange={handleInputChange}
           value={inputValue}></input>
 
-        <button className="messageSendButton" onClick={handleClick}></button>
-      </div>
+        <button type="submit" className="messageSendButton"></button>
+      </form>
     </div>
   );
-};
+}
 
 export default Chat;
