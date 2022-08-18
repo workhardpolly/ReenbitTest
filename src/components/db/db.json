@@ -3,42 +3,48 @@
     "id": 1,
     "name": "Alice Freeman",
     "avatar": "https://vjoy.cc/wp-content/uploads/2020/10/da741321fed2fc603a92b5cb13101ecc.png",
-    "lastMessageDate": "2020-02-23T18:25:43.511Z",
-    "lastMessage": "hello, boy"
+    "messages": [
+      { "messageDate": "2012-04-13T18:25:43.511Z", "message": "hello, boy" }
+    ]
   },
   {
     "id": 2,
     "name": "Josefina",
     "avatar": "https://vjoy.cc/wp-content/uploads/2020/10/f9b312787361402f34c402a170da4ef8-1248x1536.jpg",
-    "lastMessageDate": "2012-04-23T18:25:43.511Z",
-    "lastMessage": "hello, boy"
+    "messages": [
+      { "messageDate": "2012-04-13T18:25:43.511Z", "message": "hello, boy" }
+    ]
   },
   {
     "id": 3,
     "name": "Velazquez",
     "avatar": "https://vjoy.cc/wp-content/uploads/2020/10/6509e0ad6e65fdc29fff70170af2dedd.jpg",
-    "lastMessageDate": "2012-04-13T18:25:43.511Z",
-    "lastMessage": "hello, boy"
+    "messages": [
+      { "messageDate": "2012-04-13T18:25:43.511Z", "message": "hello, boy" }
+    ]
   },
   {
     "id": 4,
     "name": "Barrers",
     "avatar": "https://vjoy.cc/wp-content/uploads/2020/10/a63b1e80c31ac92374ec4a15f7045f4d.jpg",
-    "lastMessageDate": "2017-04-13T18:25:43.511Z",
-    "lastMessage": "hello, boy"
+    "messages": [
+      { "messageDate": "2012-04-13T18:25:43.511Z", "message": "hello, boy" }
+    ]
   },
   {
     "id": 5,
     "name": "Zakhar",
     "avatar": "https://uznayvse.ru/images/catalog/2022/3/pavel-durov_90.jpg",
-    "lastMessageDate": "2018-06-23T18:25:43.511Z",
-    "lastMessage": "hello, boy"
+    "messages": [
+      { "messageDate": "2012-04-13T18:25:43.511Z", "message": "hello, boy" }
+    ]
   },
   {
     "id": 6,
     "name": "Bob Snail",
     "avatar": "http://vospitatel.com.ua/images/u/ulitka-3god.jpg",
-    "lastMessageDate": "2019-08-22T18:25:43.511Z",
-    "lastMessage": "hello, boy"
+    "messages": [
+      { "messageDate": "2012-04-13T18:25:43.511Z", "message": "hello, boy" }
+    ]
   }
 ]

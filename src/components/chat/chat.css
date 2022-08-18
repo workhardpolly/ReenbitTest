@@ -1,0 +1,53 @@
+.chatWrapper {
+  height: 100vh;
+  border: 1px solid #e6e6e6;
+  position: sticky;
+  top: 0px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  flex: 1 1 auto;
+}
+
+.chatHeader {
+  border-bottom: #e6e6e6 1px solid;
+  background-color: #f5f5f5;
+  display: flex;
+  height: 70px;
+}
+
+.chatPersonName {
+  align-self: center;
+  padding-left: 10px;
+  font-size: 24px;
+}
+
+.chatWindow {
+  background-color: #fafafa;
+  flex: 1 1 auto;
+}
+
+.chatSendMessage {
+  height: 70px;
+
+  background-color: #f5f5f5;
+}
+
+.chatMessageInput {
+  height: 50px;
+  width: 95%;
+  border-radius: 20px;
+  margin: 10px 15px;
+  padding: 0px 20px;
+}
+
+.messageSendButton {
+  position: relative;
+
+  bottom: 45px;
+  left: 93%;
+  background: url('/src/img/icons/send-message.png') 0 0 / contain no-repeat;
+  width: 20px;
+  height: 20px;
+}

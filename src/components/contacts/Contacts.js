@@ -1,35 +1,45 @@
-import React, { useState } from 'react';
-import contactsFile from './contacts.json';
+import React, { useEffect, useState } from 'react';
+import contactsFile from '../db/db.json';
 
 import './contacts.css';
 
-const Contacts = () => {
+const Contacts = ({ chatIdImport }) => {
   const [searchValue, setSearchValue] = useState('');
 
   const handleInputChange = (event) => {
     setSearchValue(event.target.value);
   };
 
-  const sortedContactsFile = contactsFile
-    .sort((a, b) => new Date(a.lastMessageDate) - new Date(b.lastMessageDate))
-    .reverse();
+  const sortedContactsFile = contactsFile.sort(
+    (a, b) =>
+      new Date(b.messages.at(-1).messageDate) -
+      new Date(a.messages.at(-1).messageDate)
+  );
 
   const searchResult = sortedContactsFile.filter((item) => {
     return item.name.toLowerCase().includes(searchValue.toLowerCase());
   });
 
   const contact = searchResult.map((item) => {
-    let date = new Date(item.lastMessageDate);
+    let date = new Date(item.messages.at(-1).messageDate);
 
     let orderInList = searchResult.indexOf(item);
 
     return (
-      <div className="contactItem" style={{ order: orderInList }} key={item.id}>
+      <div
+        className="contactItem"
+        style={{ order: orderInList }}
+        key={item.id}
+        onClick={() => {
+          chatIdImport(item.id);
+        }}>
         <img className="contactAvatar" src={item.avatar}></img>
 
         <div className="contactData">
           <div className="contactName">{item.name}</div>
-          <div className="contactLastMessage">{item.lastMessage}</div>
+          <div className="contactLastMessage">
+            {item.messages.at(-1).message}
+          </div>
         </div>
         <div className="lastMessageDate">
           {date.toDateString().slice(4, 15)}
