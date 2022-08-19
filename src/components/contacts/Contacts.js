@@ -14,7 +14,7 @@ const Contacts = ({ chatIdImport }) => {
   for (let i = 1; i < localStorage.length + 1; i++) {
     currentDb.push(JSON.parse(localStorage.getItem(i)));
   }
-  console.log(currentDb, 'db updated');
+  console.log('db updated');
 
   const sortedContactsFile = currentDb.sort(
     (a, b) =>

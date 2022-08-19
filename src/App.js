@@ -3,7 +3,6 @@ import Contacts from './components/contacts/Contacts';
 import Chat from './components/chat/Chat';
 
 import db from './components/db/db.json';
-import reducer from './reducer';
 
 import './App.css';
 
@@ -22,7 +21,7 @@ function App() {
       <ChatId.Provider value={chatId}>
         <Contacts chatIdImport={chatIdImport} className="contacts" />
         <Chat
-          chatIdProp={chatId}
+          // chatIdProp={chatId}
           className="chat"
           chatId={''}
           send={send}

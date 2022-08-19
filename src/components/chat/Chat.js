@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext, useReducer } from 'react';
 import reducer from '../../reducer';
 import { ChatId } from '../../App';
 import contacts from '../db/db.json';
+import ChatHistory from './ChatHistory/ChatHistory';
 
 import './chat.css';
 
@@ -16,8 +17,6 @@ function Chat({ sendMessageImport, send, setSend }) {
   // current obj storage
 
   const [currentObj, setCurrentObj] = useState({});
-
-  const [modifiedObj, setModifiedObj] = useState('');
 
   // input block
 
@@ -37,6 +36,7 @@ function Chat({ sendMessageImport, send, setSend }) {
     localModifiedObj.messages.push({
       messageDate: new Date().toISOString(),
       message: inputValue,
+      myMessage: true,
     });
     dispatch({
       type: 'sendMessage',
@@ -47,17 +47,14 @@ function Chat({ sendMessageImport, send, setSend }) {
   };
 
   useEffect(() => {
+    setCurrentObj(JSON.parse(window.localStorage.getItem(chatId)));
     if (send === true) {
       window.localStorage.setItem(chatId, JSON.stringify(state));
     }
     setSend(false);
-  }, [send]);
+  }, [chatId, send]);
 
   // reading obj
-
-  useEffect(() => {
-    setCurrentObj(JSON.parse(window.localStorage.getItem(chatId)));
-  }, [chatId, send]);
 
   return (
     <div className="chatWrapper">
@@ -67,9 +64,12 @@ function Chat({ sendMessageImport, send, setSend }) {
       </div>
 
       <div className="chatWindow">
-        ChatWindow
         <div>Current chat id = {chatId}</div>
+        <ul>
+          <ChatHistory />
+        </ul>
       </div>
+
       <form className="chatSendMessage" onSubmit={handleSubmit}>
         <input
           placeholder="Type your message here"
