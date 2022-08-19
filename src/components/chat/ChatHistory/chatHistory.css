@@ -1,3 +1,27 @@
+.message {
+  color: #464646;
+  background-color: #e1e1e1;
+  border-radius: 20px;
+  padding: 10px;
+  margin: 5px;
+  min-width: 20%;
+  min-height: 34px;
+  max-width: 50%;
+  overflow-wrap: break-word;
+}
+.dateTime {
+  font-size: x-small;
+  margin: 7px;
+}
+
 .myMessage {
-  text-align: right;
+  text-align: end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.recievedMessage {
+  display: inline-block;
+  width: 90%;
 }

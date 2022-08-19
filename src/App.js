@@ -20,13 +20,7 @@ function App() {
     <div className="wrapper">
       <ChatId.Provider value={chatId}>
         <Contacts chatIdImport={chatIdImport} className="contacts" />
-        <Chat
-          // chatIdProp={chatId}
-          className="chat"
-          chatId={''}
-          send={send}
-          setSend={setSend}
-        />
+        <Chat className="chat" chatId={''} send={send} setSend={setSend} />
       </ChatId.Provider>
     </div>
   );

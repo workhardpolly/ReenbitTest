@@ -8,6 +8,7 @@ import './chat.css';
 
 function Chat({ sendMessageImport, send, setSend }) {
   const chatId = useContext(ChatId);
+  console.log('chat rerender');
 
   const [state, dispatch] = useReducer(
     reducer,
@@ -31,19 +32,21 @@ function Chat({ sendMessageImport, send, setSend }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setSend(true);
-    const localModifiedObj = JSON.parse(JSON.stringify(currentObj));
-    localModifiedObj.messages.push({
-      messageDate: new Date().toISOString(),
-      message: inputValue,
-      myMessage: true,
-    });
-    dispatch({
-      type: 'sendMessage',
-      payload: { ...localModifiedObj },
-    });
+    if (inputValue !== '') {
+      setSend(true);
+      const localModifiedObj = JSON.parse(JSON.stringify(currentObj));
+      localModifiedObj.messages.push({
+        messageDate: new Date().toISOString(),
+        message: inputValue,
+        myMessage: true,
+      });
+      dispatch({
+        type: 'sendMessage',
+        payload: { ...localModifiedObj },
+      });
 
-    setInputValue('');
+      setInputValue('');
+    } else return;
   };
 
   useEffect(() => {
@@ -54,8 +57,6 @@ function Chat({ sendMessageImport, send, setSend }) {
     setSend(false);
   }, [chatId, send]);
 
-  // reading obj
-
   return (
     <div className="chatWrapper">
       <div className="chatHeader">
@@ -64,8 +65,7 @@ function Chat({ sendMessageImport, send, setSend }) {
       </div>
 
       <div className="chatWindow">
-        <div>Current chat id = {chatId}</div>
-        <ul>
+        <ul className="chatHistoryList">
           <ChatHistory />
         </ul>
       </div>

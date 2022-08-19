@@ -8,6 +8,7 @@
   flex-direction: column;
   margin: 0;
   flex: 1 1 auto;
+  max-width: 750px;
 }
 
 .chatHeader {
@@ -27,6 +28,8 @@
   background-color: #fafafa;
   flex: 1 1 auto;
   overflow-y: scroll;
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 .chatSendMessage {
