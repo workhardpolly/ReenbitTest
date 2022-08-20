@@ -5,7 +5,6 @@ import './chatHistory.css';
 
 function ChatHistiry() {
   const chatId = useContext(ChatId);
-  console.log('chatHistory');
 
   const currentChat = JSON.parse(localStorage.getItem(chatId));
 
@@ -25,7 +24,7 @@ function ChatHistiry() {
       return (
         <div className="recievedMessageContainer">
           <img className="contactAvatar" src={avatar} />
-          <div className="recievedMessage" key={date}>
+          <div className="recievedMessage" key={item.messageDate}>
             <div
               style={{ backgroundColor: '#394051', color: '#f5f5f5' }}
               className="message">
