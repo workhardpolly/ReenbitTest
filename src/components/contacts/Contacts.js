@@ -14,7 +14,7 @@ const Contacts = ({ chatIdImport }) => {
   for (let i = 1; i < localStorage.length + 1; i++) {
     currentDb.push(JSON.parse(localStorage.getItem(i)));
   }
-  console.log('db updated');
+  // console.log('db updated');
 
   const sortedContactsFile = currentDb.sort(
     (a, b) =>
@@ -70,9 +70,8 @@ const Contacts = ({ chatIdImport }) => {
             placeholder="Search or start new chat"></input>
         </div>
       </div>
+      <h2 className="chatsHeader">Chats</h2>
       <div className="contacts">
-        <h2 className="chatsHeader">Chats</h2>
-
         <ul className="contactsList">{contact}</ul>
       </div>
     </div>

@@ -11,16 +11,32 @@ export const ChatId = React.createContext();
 function App() {
   const [chatId, setChatId] = React.useState(1);
   const [send, setSend] = React.useState(false);
+  const [respond, setRespond] = React.useState(false);
 
   const chatIdImport = (chatIdData) => {
     setChatId(chatIdData);
   };
 
+  useEffect(() => {
+    setRespond(false);
+  }, [respond, send]);
+
   return (
     <div className="wrapper">
       <ChatId.Provider value={chatId}>
-        <Contacts chatIdImport={chatIdImport} className="contacts" />
-        <Chat className="chat" chatId={''} send={send} setSend={setSend} />
+        <Contacts
+          chatIdImport={chatIdImport}
+          send={send}
+          className="contacts"
+        />
+        <Chat
+          className="chat"
+          chatId={''}
+          send={send}
+          setSend={setSend}
+          respond={respond}
+          setRespond={setRespond}
+        />
       </ChatId.Provider>
     </div>
   );

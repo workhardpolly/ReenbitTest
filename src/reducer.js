@@ -3,6 +3,12 @@ export default function (state, action) {
     case 'sendMessage':
       return action.payload;
 
+    case 'recieveMessage':
+      return action.payload;
+
+    case 'chatIdChanged':
+      return action.payload;
+
     default:
       return state;
   }

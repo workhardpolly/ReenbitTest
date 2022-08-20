@@ -3,21 +3,48 @@ import reducer from '../../reducer';
 import { ChatId } from '../../App';
 import contacts from '../db/db.json';
 import ChatHistory from './ChatHistory/ChatHistory';
+// import getChuckResponse from './getChuckResponse';
 
 import './chat.css';
 
-function Chat({ sendMessageImport, send, setSend }) {
+function Chat({ sendMessageImport, send, setSend, respond, setRespond }) {
   const chatId = useContext(ChatId);
-  console.log('chat rerender');
+  // console.log('chat rerender');
 
   const [state, dispatch] = useReducer(
     reducer,
     JSON.parse(localStorage.getItem(chatId))
   );
 
-  // current obj storage
+  // recieve Chuck responce
+  const [chuckRespond, setChuckRespond] = useState(
+    'Chuck Norris will hit you so hard that your blood will bleed'
+  );
 
-  const [currentObj, setCurrentObj] = useState({});
+  function getChuckResponse(chatId) {
+    // console.log('getChuckRespStarted');
+
+    fetch('https://api.chucknorris.io/jokes/random')
+      .then((responce) => responce.json())
+      .then((body) => setChuckRespond(body.value));
+
+    setTimeout(() => {
+      const currentMessage = JSON.parse(localStorage.getItem(chatId));
+      currentMessage.messages.push({
+        messageDate: new Date().toISOString(),
+        message: chuckRespond,
+        myMessage: false,
+      });
+      localStorage.setItem(chatId, JSON.stringify(currentMessage));
+      console.log(currentMessage);
+
+      dispatch({
+        type: 'sendMessage',
+        payload: { ...currentMessage },
+      });
+      setRespond(true);
+    }, 5000);
+  }
 
   // input block
 
@@ -32,36 +59,54 @@ function Chat({ sendMessageImport, send, setSend }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    //seting message to reducer
+
     if (inputValue !== '') {
       setSend(true);
-      const localModifiedObj = JSON.parse(JSON.stringify(currentObj));
+      const localModifiedObj = JSON.parse(window.localStorage.getItem(chatId));
       localModifiedObj.messages.push({
         messageDate: new Date().toISOString(),
         message: inputValue,
         myMessage: true,
       });
+
       dispatch({
         type: 'sendMessage',
         payload: { ...localModifiedObj },
       });
 
+      // cleaning input after send
+
       setInputValue('');
+
+      getChuckResponse(chatId);
     } else return;
   };
 
   useEffect(() => {
-    setCurrentObj(JSON.parse(window.localStorage.getItem(chatId)));
-    if (send === true) {
-      window.localStorage.setItem(chatId, JSON.stringify(state));
-    }
+    window.localStorage.setItem(chatId, JSON.stringify(state));
+
     setSend(false);
-  }, [chatId, send]);
+
+    console.log('effect1');
+  }, [send]);
+
+  useEffect(() => {
+    const currentObj = JSON.parse(window.localStorage.getItem(chatId));
+    dispatch({ type: 'chatIdChanged', payload: { ...currentObj } });
+  }, [chatId]);
 
   return (
     <div className="chatWrapper">
       <div className="chatHeader">
-        <img className="contactAvatar" src={currentObj.avatar} />
-        <div className="chatPersonName">{currentObj.name}</div>
+        <img
+          className="contactAvatar"
+          src={JSON.parse(window.localStorage.getItem(chatId)).avatar}
+        />
+        <div className="chatPersonName">
+          {' '}
+          {JSON.parse(window.localStorage.getItem(chatId)).name}{' '}
+        </div>
       </div>
 
       <div className="chatWindow">
