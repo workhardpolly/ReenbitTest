@@ -1,25 +1,40 @@
 [
   {
     "id": 1,
-    "name": "Alice Freeman",
+    "name": "Josefina",
     "avatar": "https://vjoy.cc/wp-content/uploads/2020/10/da741321fed2fc603a92b5cb13101ecc.png",
     "messages": [
       {
-        "messageDate": "2012-04-12T18:25:43.511Z",
-        "message": "hi",
+        "messageDate": "2012-04-12T08:30:43.511Z",
+        "message": "Please, come to the meeting room 1B, we have a problem",
+        "myMessage": false
+      },
+      {
+        "messageDate": "2012-04-12T08:30:49.511Z",
+        "message": "Am having my breakfast, can't you wait for 10 mins?",
+        "myMessage": true
+      },
+      {
+        "messageDate": "2012-04-12T08:30:55.511Z",
+        "message": "We are loosing money! Quick!",
         "myMessage": false
       }
     ]
   },
   {
     "id": 2,
-    "name": "Josefina",
+    "name": "Alice Freeman",
     "avatar": "https://vjoy.cc/wp-content/uploads/2020/10/f9b312787361402f34c402a170da4ef8-1248x1536.jpg",
     "messages": [
       {
-        "messageDate": "2012-04-16T18:25:43.511Z",
-        "message": "hello, boy",
+        "messageDate": "2012-04-16T08:25:43.511Z",
+        "message": "I've made a breakfast, would you join me?",
         "myMessage": true
+      },
+      {
+        "messageDate": "2012-04-16T08:26:43.511Z",
+        "message": "You are the best! Of cource!",
+        "myMessage": false
       }
     ]
   },
@@ -30,7 +45,7 @@
     "messages": [
       {
         "messageDate": "2012-04-22T18:25:43.511Z",
-        "message": "hello, boy",
+        "message": "Hello!",
         "myMessage": true
       }
     ]
@@ -42,7 +57,7 @@
     "messages": [
       {
         "messageDate": "2012-04-11T18:25:43.511Z",
-        "message": "hello, boy",
+        "message": "Hello!",
         "myMessage": true
       }
     ]
@@ -54,7 +69,7 @@
     "messages": [
       {
         "messageDate": "2012-04-05T18:25:43.511Z",
-        "message": "hello, boy",
+        "message": "Hello, buddy",
         "myMessage": true
       }
     ]
@@ -66,7 +81,7 @@
     "messages": [
       {
         "messageDate": "2012-04-29T18:25:43.511Z",
-        "message": "hello, boy",
+        "message": "Hello, buddy",
         "myMessage": true
       }
     ]

@@ -43,7 +43,7 @@ function Chat({ sendMessageImport, send, setSend, respond, setRespond }) {
         payload: { ...currentMessage },
       });
       setRespond(true);
-    }, 5000);
+    }, 10000);
   }
 
   // input block
@@ -87,8 +87,6 @@ function Chat({ sendMessageImport, send, setSend, respond, setRespond }) {
     window.localStorage.setItem(chatId, JSON.stringify(state));
 
     setSend(false);
-
-    console.log('effect1');
   }, [send]);
 
   useEffect(() => {
