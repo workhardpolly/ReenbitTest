@@ -3,14 +3,11 @@ import reducer from '../../reducer';
 import { ChatId } from '../../App';
 
 import ChatHistory from './ChatHistory/ChatHistory';
-// import getChuckResponse from './getChuckResponse';
 
 import './chat.css';
-import Contacts from '../contacts/Contacts';
 
 function Chat({ sendMessageImport, send, setSend, respond, setRespond }) {
   const chatId = useContext(ChatId);
-  // console.log('chat rerender');
 
   const [state, dispatch] = useReducer(
     reducer,
@@ -23,8 +20,6 @@ function Chat({ sendMessageImport, send, setSend, respond, setRespond }) {
   );
 
   function getChuckResponse(chatId) {
-    // console.log('getChuckRespStarted');
-
     fetch('https://api.chucknorris.io/jokes/random')
       .then((responce) => responce.json())
       .then((body) => setChuckRespond(body.value));

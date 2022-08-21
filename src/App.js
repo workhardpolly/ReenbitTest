@@ -1,8 +1,6 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect } from 'react';
 import Contacts from './components/contacts/Contacts';
 import Chat from './components/chat/Chat';
-
-import db from './components/db/db.json';
 
 import './App.css';
 
