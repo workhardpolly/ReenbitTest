@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useContext, useReducer } from 'react';
 import reducer from '../../reducer';
 import { ChatId } from '../../App';
-import contacts from '../db/db.json';
+
 import ChatHistory from './ChatHistory/ChatHistory';
 // import getChuckResponse from './getChuckResponse';
 
 import './chat.css';
+import Contacts from '../contacts/Contacts';
 
 function Chat({ sendMessageImport, send, setSend, respond, setRespond }) {
   const chatId = useContext(ChatId);
@@ -18,7 +19,7 @@ function Chat({ sendMessageImport, send, setSend, respond, setRespond }) {
 
   // recieve Chuck responce
   const [chuckRespond, setChuckRespond] = useState(
-    'Chuck Norris will hit you so hard that your blood will bleed'
+    'Fear makes Chuck Norris hungry.'
   );
 
   function getChuckResponse(chatId) {
@@ -43,7 +44,7 @@ function Chat({ sendMessageImport, send, setSend, respond, setRespond }) {
         payload: { ...currentMessage },
       });
       setRespond(true);
-    }, 10000);
+    }, 12000);
   }
 
   // input block
@@ -94,16 +95,26 @@ function Chat({ sendMessageImport, send, setSend, respond, setRespond }) {
     dispatch({ type: 'chatIdChanged', payload: { ...currentObj } });
   }, [chatId]);
 
+  function returnToChat(event) {
+    event.preventDefault();
+
+    document.querySelector('.contactsWrapper').style.display = 'block';
+    document.querySelector('.chatWrapper').style.display = 'none';
+  }
+
   return (
     <div className="chatWrapper">
       <div className="chatHeader">
+        <button className="showContactsButton" onClick={returnToChat}>
+          ❮ Back
+        </button>
         <img
+          alt="Contact avatar"
           className="contactAvatar"
           src={JSON.parse(window.localStorage.getItem(chatId)).avatar}
         />
         <div className="chatPersonName">
-          {' '}
-          {JSON.parse(window.localStorage.getItem(chatId)).name}{' '}
+          {JSON.parse(window.localStorage.getItem(chatId)).name}
         </div>
       </div>
 

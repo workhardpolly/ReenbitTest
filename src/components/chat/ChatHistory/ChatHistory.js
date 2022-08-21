@@ -23,10 +23,18 @@ function ChatHistiry() {
     } else {
       return (
         <div className="recievedMessageContainer">
-          <img className="contactAvatar" src={avatar} />
+          <img
+            alt="Contact avatar"
+            className="contactAvatar recievedMessageAvatar"
+            src={avatar}
+          />
           <div className="recievedMessage" key={item.messageDate}>
             <div
-              style={{ backgroundColor: '#394051', color: '#f5f5f5' }}
+              style={{
+                backgroundColor: '#394051',
+                color: '#f5f5f5',
+                maxWidth: '100%',
+              }}
               className="message">
               {message}
             </div>

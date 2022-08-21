@@ -85,5 +85,17 @@
         "myMessage": true
       }
     ]
+  },
+  {
+    "id": 7,
+    "name": "Chad Smith",
+    "avatar": "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/2Ubkwfy27jrewWkMw1MHS34iQIN.jpg",
+    "messages": [
+      {
+        "messageDate": "2011-04-29T18:25:43.511Z",
+        "message": "Let's play today?",
+        "myMessage": false
+      }
+    ]
   }
 ]

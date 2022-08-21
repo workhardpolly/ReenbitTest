@@ -6,7 +6,7 @@
   margin: 5px;
   min-width: 20%;
   min-height: 34px;
-  max-width: 50%;
+  max-width: 40%;
   overflow-wrap: break-word;
 }
 .dateTime {
@@ -21,7 +21,7 @@
   align-items: flex-end;
 }
 
-.recievedMessage {
-  display: inline-block;
-  width: 90%;
+.recievedMessageContainer {
+  display: flex;
+  max-width: 50%;
 }

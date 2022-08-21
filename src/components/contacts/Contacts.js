@@ -26,6 +26,18 @@ const Contacts = ({ chatIdImport }) => {
     return item.name.toLowerCase().includes(searchValue.toLowerCase());
   });
 
+  function displayChat() {
+    if (window.innerWidth < 600) {
+      document.querySelector('.contactsWrapper').style.display = 'none';
+      document.querySelector('.chatWrapper').style.display = 'flex';
+      document.querySelector('.chatWrapper').style.maxWidth = '100%';
+    } else if (window.innerHeight < 600) {
+      document.querySelector('.contactsWrapper').style.display = 'none';
+      document.querySelector('.chatWrapper').style.display = 'flex';
+      document.querySelector('.chatWrapper').style.maxWidth = '100%';
+    } else return;
+  }
+
   const contact = searchResult.map((item) => {
     let date = new Date(item.messages.at(-1).messageDate);
 
@@ -38,8 +50,13 @@ const Contacts = ({ chatIdImport }) => {
         key={item.id}
         onClick={() => {
           chatIdImport(item.id);
+          console.log('click', item.id);
+          displayChat();
         }}>
-        <img className="contactAvatar" src={item.avatar}></img>
+        <img
+          alt="Contact avatar"
+          className="contactAvatar"
+          src={item.avatar}></img>
 
         <div className="contactData">
           <div className="contactName">{item.name}</div>
@@ -59,6 +76,7 @@ const Contacts = ({ chatIdImport }) => {
       <div className="contactHeader">
         <div className="myInfo">
           <img
+            alt="Your avatar"
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Mike_Tyson_2019_by_Glenn_Francis.jpg/1200px-Mike_Tyson_2019_by_Glenn_Francis.jpg"
             className="contactAvatar"></img>
         </div>

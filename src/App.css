@@ -4,10 +4,40 @@
   display: flex;
   flex-direction: row;
   font-family: 'Mulish', sans-serif;
-  max-width: 1170px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-.contacts {
-  min-width: 400px;
+@media (width < 600px) and (orientation: portrait) {
+  .wrapper {
+    flex-direction: column;
+  }
+  .contacts {
+    width: 100vh;
+    max-width: 100%;
+  }
+  .chatWrapper {
+    display: none;
+  }
+
+  .showContactsButton {
+    display: block;
+  }
+}
+@media (height < 600px) and (orientation: landscape) {
+  .wrapper {
+    flex-direction: column;
+  }
+  .contacts {
+    width: 100vw;
+    max-width: 100%;
+  }
+  .chatWrapper {
+    display: none;
+    overflow-y: hidden;
+  }
+
+  .showContactsButton {
+    display: block;
+  }
 }
