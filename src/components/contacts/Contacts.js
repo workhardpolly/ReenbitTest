@@ -3,28 +3,7 @@ import React, { useState } from 'react';
 import './contacts.css';
 
 const Contacts = ({ chatIdImport }) => {
-  const [searchValue, setSearchValue] = useState('');
-
-  const handleInputChange = (event) => {
-    setSearchValue(event.target.value);
-  };
-
-  let currentDb = [];
-
-  for (let i = 1; i < localStorage.length + 1; i++) {
-    currentDb.push(JSON.parse(localStorage.getItem(i)));
-  }
-  // console.log('db updated');
-
-  const sortedContactsFile = currentDb.sort(
-    (a, b) =>
-      new Date(b.messages.at(-1).messageDate) -
-      new Date(a.messages.at(-1).messageDate)
-  );
-
-  const searchResult = sortedContactsFile.filter((item) => {
-    return item.name.toLowerCase().includes(searchValue.toLowerCase());
-  });
+  // styling for mobile display
 
   function displayChat() {
     if (window.innerWidth < 600) {
@@ -37,6 +16,37 @@ const Contacts = ({ chatIdImport }) => {
       document.querySelector('.chatWrapper').style.maxWidth = '100%';
     } else return;
   }
+
+  // search manager
+  const [searchValue, setSearchValue] = useState('');
+
+  const handleInputChange = (event) => {
+    setSearchValue(event.target.value);
+  };
+
+  // parsing DB from browser storage
+
+  let currentDb = [];
+
+  for (let i = 1; i < localStorage.length + 1; i++) {
+    currentDb.push(JSON.parse(localStorage.getItem(i)));
+  }
+
+  // sorting list of contacts depending on its last message time
+
+  const sortedContactsFile = currentDb.sort(
+    (a, b) =>
+      new Date(b.messages.at(-1).messageDate) -
+      new Date(a.messages.at(-1).messageDate)
+  );
+
+  // search result filter
+
+  const searchResult = sortedContactsFile.filter((item) => {
+    return item.name.toLowerCase().includes(searchValue.toLowerCase());
+  });
+
+  // creating of list with contact items
 
   const contact = searchResult.map((item) => {
     let date = new Date(item.messages.at(-1).messageDate);
@@ -70,6 +80,8 @@ const Contacts = ({ chatIdImport }) => {
       </div>
     );
   });
+
+  // contacts window return
 
   return (
     <div className="contactsWrapper">

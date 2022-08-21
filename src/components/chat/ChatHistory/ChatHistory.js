@@ -4,6 +4,8 @@ import { ChatId } from '../../../App';
 import './chatHistory.css';
 
 function ChatHistiry() {
+  // rendering of message history for current user from local storage
+
   const chatId = useContext(ChatId);
 
   const currentChat = JSON.parse(localStorage.getItem(chatId));

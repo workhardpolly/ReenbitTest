@@ -7,13 +7,17 @@ import './App.css';
 export const ChatId = React.createContext();
 
 function App() {
+  // Main states bank
   const [chatId, setChatId] = React.useState(1);
   const [send, setSend] = React.useState(false);
   const [respond, setRespond] = React.useState(false);
 
+  // import of chatId from Chat module
   const chatIdImport = (chatIdData) => {
     setChatId(chatIdData);
   };
+
+  // rerender in case of message was send or recieved
 
   useEffect(() => {
     setRespond(false);

@@ -7,6 +7,17 @@ import ChatHistory from './ChatHistory/ChatHistory';
 import './chat.css';
 
 function Chat({ sendMessageImport, send, setSend, respond, setRespond }) {
+  // mobile version return button manager
+
+  function returnToChat(event) {
+    event.preventDefault();
+
+    document.querySelector('.contactsWrapper').style.display = 'block';
+    document.querySelector('.chatWrapper').style.display = 'none';
+  }
+
+  // state manager for chat messages history
+
   const chatId = useContext(ChatId);
 
   const [state, dispatch] = useReducer(
@@ -79,23 +90,20 @@ function Chat({ sendMessageImport, send, setSend, respond, setRespond }) {
     } else return;
   };
 
+  // rerender if message from user was send
+
   useEffect(() => {
     window.localStorage.setItem(chatId, JSON.stringify(state));
 
     setSend(false);
   }, [send]);
 
+  // rerender if chat was changed
+
   useEffect(() => {
     const currentObj = JSON.parse(window.localStorage.getItem(chatId));
     dispatch({ type: 'chatIdChanged', payload: { ...currentObj } });
   }, [chatId]);
-
-  function returnToChat(event) {
-    event.preventDefault();
-
-    document.querySelector('.contactsWrapper').style.display = 'block';
-    document.querySelector('.chatWrapper').style.display = 'none';
-  }
 
   return (
     <div className="chatWrapper">
