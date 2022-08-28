@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext, useReducer } from 'react';
-import reducer from '../../reducer';
 import { ChatId } from '../../App';
 
 import ChatHistory from './ChatHistory/ChatHistory';
@@ -20,12 +19,8 @@ function Chat({ sendMessageImport, send, setSend, respond, setRespond }) {
 
   const chatId = useContext(ChatId);
 
-  const [state, dispatch] = useReducer(
-    reducer,
-    JSON.parse(localStorage.getItem(chatId))
-  );
-
   // recieve Chuck responce
+
   const [chuckRespond, setChuckRespond] = useState(
     'Fear makes Chuck Norris hungry.'
   );
@@ -45,10 +40,6 @@ function Chat({ sendMessageImport, send, setSend, respond, setRespond }) {
       localStorage.setItem(chatId, JSON.stringify(currentMessage));
       console.log(currentMessage);
 
-      dispatch({
-        type: 'sendMessage',
-        payload: { ...currentMessage },
-      });
       setRespond(true);
     }, 12000);
   }
@@ -77,32 +68,20 @@ function Chat({ sendMessageImport, send, setSend, respond, setRespond }) {
         myMessage: true,
       });
 
-      dispatch({
-        type: 'sendMessage',
-        payload: { ...localModifiedObj },
-      });
-
       // cleaning input after send
+      window.localStorage.setItem(chatId, JSON.stringify(localModifiedObj));
 
+      setSend(false);
       setInputValue('');
 
       getChuckResponse(chatId);
     } else return;
   };
 
-  // rerender if message from user was send
-
-  useEffect(() => {
-    window.localStorage.setItem(chatId, JSON.stringify(state));
-
-    setSend(false);
-  }, [send]);
-
   // rerender if chat was changed
 
   useEffect(() => {
     const currentObj = JSON.parse(window.localStorage.getItem(chatId));
-    dispatch({ type: 'chatIdChanged', payload: { ...currentObj } });
   }, [chatId]);
 
   return (
